@@ -6,9 +6,9 @@ This version includes customized commands:
 #Customized Commands
 All commands must start with an asterisk (*) and end with a pound sign (#).
 Commands (case sensitive):
-| Command | Description | Arguments | Argument Descriptions
-| ------- | ----------- | ---------- |
-|    R    | Returns the time stamp | No args | |
+| Command | Description | Arguments | Argument Descriptions |
+| ------- | ----------- | ---------- | -------------------- |
+|    R    | Returns the time stamp | No args |              |
 |    T    | Sets the internal clock. Arguement must be 15 digits in the form. | -ssmmhhDDMMYYYY | ss - seconds
 mm - minutes
 hh - hours (24 hr format)
