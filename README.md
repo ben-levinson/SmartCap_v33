@@ -2,6 +2,8 @@
 This application is built from the Zentri BLE Command Android Demo App.
 
 This version includes customized commands:
+
+```
 All commands must start with an asterisk (*) and end with a pound sign (#).
 Commands (case sensitive):
 •	R - Returns a time stamp
@@ -34,6 +36,8 @@ Commands (case sensitive):
                     For ease of use, always use “00”, which will erase the whole Flash memory chip.
                     The erase cycle for the whole chip takes a few seconds,
                      and the MCU will block further commands until the erase cycle completes.
+
+```
 
 # Installation
 This project should be imported into Android studio (File -> Import Project).  
