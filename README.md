@@ -9,32 +9,11 @@ Commands (case sensitive):
 | Command | Description | Arguments | Argument Descriptions |
 | ------- | ----------- | ---------- | -------------------- |
 |    R    | Returns the time stamp | No args |              |
-|    T    | Sets the internal clock. Arguement must be 15 digits in the form. | -ssmmhhDDMMYYYY | ss - seconds
-mm - minutes
-hh - hours (24 hr format)
-d  - day of week (arbitrary not used)
-DD - day of month
-MM - month of year
-YYYY - year |
-|    C     | Takes a picture and stores it in embedded memory. 
-             Each time you take a new picture, old pictures are not overwritten.
-             The new picture is appended to the end. | No args | | 
-|    0     | This is a zero. Sends all stored pictures to the phone. 
-             Format of transmission: 
-             Capital letter "I" (for "image")
-             2 bytes for the length of the image.
-             The image is a JPEG, so the length will be different each time.
-             THe order of the transmission is first we send the 8 Lsb, then the 8 Msb. 
-             Variable number of bytes for the image (binary data)
-             Time stamp
-             Battery charge
-             Battery voltage | No args | |
-|   E_ _   | Erases embedded memory 
-             Argument must be 2 digits
-             These digits indicate the number of Flash memory sectors to erase.
-             For ease of use, always us "00", which will erase the whole Flash memory chip.
-             The erase cycle for the whole chip takes a few seconds, and the MCU will block 
-             further commands until the erase cycle completes. | |
+|    T    | Sets the internal clock. Arguement must be 15 digits in the form. | -ssmmhhDDMMYYYY | 
+
+
+
+
 
 # Installation
 This project should be imported into Android studio (File -> Import Project).
