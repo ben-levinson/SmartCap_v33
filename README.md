@@ -3,52 +3,49 @@ This application is built from the Zentri BLE Command Android Demo App.
 
 This version includes customized commands:
 
-```
+#Customized Commands
 All commands must start with an asterisk (*) and end with a pound sign (#).
 Commands (case sensitive):
-•	R - Returns a time stamp
-•	T - Sets the internal clock
-            -Argument must be 15 digits in the form
-                -ssmmhhdDDMMYYYY
-                    •	ss – seconds
-                    •	mm – minutes
-                    •	hh – hours (24 hr format)
-                    •	d – day of week (arbitrary, not used)
-                    •	DD – day of month
-                    •	MM – month of year
-                    •	YYYY – year
-•	C -	Takes a picture and stores it in embedded memory.
-        Each time you take a new picture, old pictures are not overwritten.
-        The new picture is appended to the end.
-•	0 - This is a zero.  Sends all stored pictures to the phone.
-            - Format of transmission:
-                •   Capital letter “I” (for “image”)
-                •	2 bytes for the length of the image.
-                    The image is a JPEG, so the length will be different each time.
-                    The order of the transmission is first we send the 8 LSb, then the 8 MSb.
-                •	Variable number of bytes for the image (binary data)
-                •	Time stamp
-                •	Battery charge
-                •	Battery voltage
-•	E_ _	- Erases embedded memory
-            •	Argument must be 2 digits
-                •	These digits indicate the number of Flash memory sectors to erase.
-                    For ease of use, always use “00”, which will erase the whole Flash memory chip.
-                    The erase cycle for the whole chip takes a few seconds,
-                     and the MCU will block further commands until the erase cycle completes.
-
-```
+| Command | Description | Arguments | Argument Descriptions
+| ------- | ----------- | ---------- |
+|    R    | Returns the time stamp | No args | |
+|    T    | Sets the internal clock. Arguement must be 15 digits in the form. | -ssmmhhDDMMYYYY | ss - seconds
+mm - minutes
+hh - hours (24 hr format)
+d  - day of week (arbitrary not used)
+DD - day of month
+MM - month of year
+YYYY - year |
+|    C     | Takes a picture and stores it in embedded memory. 
+             Each time you take a new picture, old pictures are not overwritten.
+             The new picture is appended to the end. | No args | | 
+|    0     | This is a zero. Sends all stored pictures to the phone. 
+             Format of transmission: 
+             Capital letter "I" (for "image")
+             2 bytes for the length of the image.
+             The image is a JPEG, so the length will be different each time.
+             THe order of the transmission is first we send the 8 Lsb, then the 8 Msb. 
+             Variable number of bytes for the image (binary data)
+             Time stamp
+             Battery charge
+             Battery voltage | No args | |
+|   E_ _   | Erases embedded memory 
+             Argument must be 2 digits
+             These digits indicate the number of Flash memory sectors to erase.
+             For ease of use, always us "00", which will erase the whole Flash memory chip.
+             The erase cycle for the whole chip takes a few seconds, and the MCU will block 
+             further commands until the erase cycle completes. 
 
 # Installation
-This project should be imported into Android studio (File -> Import Project).  
+This project should be imported into Android studio (File -> Import Project).
 
 # Usage
-The demo app uses a Service to allow multiple activities to share a BLE connection.  The activities 
+The demo app uses a Service to allow multiple activities to share a BLE connection.  The activities
 receive intents from the Service as BLE events occur.
 
 Please refer to the doc directory for javadoc documentation of the Zentri Libaries.
 The basic usage of the library is as follows:
-```
+```java
 mZentriOSBLEManager = new ZentriOSBLEManager();
 mZentriOSBLEManager.init(context, mCallbacks);
 
@@ -64,7 +61,7 @@ mZentriOSBLEManager.adc(10);//read ADC value on GPIO10
 
 ```
 
-The above functions add commands into a queue.  The results are accessed through the callbacks 
+The above functions add commands into a queue.  The results are accessed through the callbacks
 passed into init().
 
 Please see the demo app for an example implementation of the library.
