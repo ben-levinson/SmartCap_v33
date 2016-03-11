@@ -1,5 +1,39 @@
-# Zentri BLE Command Demo
-This application demonstrates how to use the zentri_ble_command Android libraries for Zentri BLE devices.
+# SmartCap_v33
+This application is built from the Zentri BLE Command Android Demo App.
+
+This version includes customized commands:
+All commands must start with an asterisk (*) and end with a pound sign (#).
+Commands (case sensitive):
+•	R - Returns a time stamp
+•	T - Sets the internal clock
+            -Argument must be 15 digits in the form
+                -ssmmhhdDDMMYYYY
+                    •	ss – seconds
+                    •	mm – minutes
+                    •	hh – hours (24 hr format)
+                    •	d – day of week (arbitrary, not used)
+                    •	DD – day of month
+                    •	MM – month of year
+                    •	YYYY – year
+•	C -	Takes a picture and stores it in embedded memory.
+        Each time you take a new picture, old pictures are not overwritten.
+        The new picture is appended to the end.
+•	0 - This is a zero.  Sends all stored pictures to the phone.
+            - Format of transmission:
+                •   Capital letter “I” (for “image”)
+                •	2 bytes for the length of the image.
+                    The image is a JPEG, so the length will be different each time.
+                    The order of the transmission is first we send the 8 LSb, then the 8 MSb.
+                •	Variable number of bytes for the image (binary data)
+                •	Time stamp
+                •	Battery charge
+                •	Battery voltage
+•	E_ _	- Erases embedded memory
+            •	Argument must be 2 digits
+                •	These digits indicate the number of Flash memory sectors to erase.
+                    For ease of use, always use “00”, which will erase the whole Flash memory chip.
+                    The erase cycle for the whole chip takes a few seconds,
+                     and the MCU will block further commands until the erase cycle completes.
 
 # Installation
 This project should be imported into Android studio (File -> Import Project).  
@@ -8,6 +42,7 @@ This project should be imported into Android studio (File -> Import Project).
 The demo app uses a Service to allow multiple activities to share a BLE connection.  The activities 
 receive intents from the Service as BLE events occur.
 
+Please refer to the doc directory for javadoc documentation of the Zentri Libaries.
 The basic usage of the library is as follows:
 ```
 mZentriOSBLEManager = new ZentriOSBLEManager();
@@ -46,20 +81,3 @@ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR B
 INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-# About
-This library makes use of the `SmoothProgressBar` library from castorflex, which uses an Apache 2.0 license.
-
-Copyright 2014 Antoine Merle
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.

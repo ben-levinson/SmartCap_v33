@@ -294,6 +294,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         mToggleIm = (ToggleButton) findViewById(R.id.toggle_im);
+
         mToggleIm.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -318,6 +319,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         mShowIm = (Button) findViewById(R.id.show_im);
+
         mShowIm.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -326,11 +328,21 @@ public class MainActivity extends AppCompatActivity
                 /*imView = (ImageView) findViewById(R.id.imageView);
                 Bitmap bmp = BitmapFactory.decodeFile(mFileNameLog);
                 imView.setImageBitmap(bmp);*/
-                imView = (ImageView) findViewById(R.id.imageView);
-                Bitmap bmp = BitmapFactory.decodeByteArray(imBytes, 0, len_image);
-                imView.setImageBitmap(bmp);
-                Log.d(TAG, "Showing Image");
-                Log.d(TAG, "File path: " + mFileNameLog);
+
+                try
+                {
+                    imView = (ImageView) findViewById(R.id.imageView);
+                    Bitmap bmp = BitmapFactory.decodeByteArray(imBytes, 0, len_image);
+                    imView.setImageBitmap(bmp);
+                    Log.d(TAG, "Showing Image");
+                    Log.d(TAG, "File path: " + mFileNameLog);
+                }
+                catch (NullPointerException e)
+                {
+                    showErrorDialog(R.string.error, true);
+                    e.getCause();
+                    Log.d(TAG,"No Image was taken.");
+                }
             }
         });
 
