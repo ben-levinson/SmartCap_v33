@@ -7,11 +7,19 @@ This version includes customized commands:
 All commands must start with an asterisk (*) and end with a pound sign (#).
 Commands (case sensitive):
 
-| First Header | Second Header |
-| ------------ | ------------- |
-  Content      |  Content      |
+| Command      | Description                           | Arguments | 
+| ------------ | -------------                         | --------- | 
+|       R      |  Returns the time stamp.              | No args   |   
+|       T      | Sets the internal clock. Argument must be 15 digits in the form:| ssmmhhDDMMYYYY^  |  
+|       C      | Takes a picture and stores it in embedded memory. Each time you take a new picture, old pictures are not overwritten. The new picture is appended to the end.| No Args |                     
+|     0        | This is a zero. Sends all stored pictures to the phone. Format of transmission: Capital letter "I" (for "image".) 2 bytes for the length of the image. The image is a JPEG, so the length will be different each time. The order of the transmission is first we send the 8 Lsb, then the 8 Msb. Variable number of bytes for the image (binary data) Time stamp, Battery charge, Battery voltage | I |  
+| E | Erases embedded memory. Argument must be 2 digits. These digits indicate the number of Flash memory sectors to erase. For ease of use, always us "00", which will erase the whole Flash memory chip. The erase cycle for the whole chip takes a few seconds, and the MCU will block further commands until the erase cycle completes. | No args| 
 
+^ These parameters are:
 
+| Argument 1 | Argument 2 | Argument 3 | Argument 4 | Argumet 5 | Argument 6 |
+|  ----      | ----       |  ----      |  ----      |  ----     | ----       |
+| ss: seconds| mm: minutes| hh: hours (24 hr format) | DD: day of month | MM: month of year | YYYY: year | 
 
 
 # Installation
