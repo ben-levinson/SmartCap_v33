@@ -34,7 +34,7 @@ YYYY - year |
              These digits indicate the number of Flash memory sectors to erase.
              For ease of use, always us "00", which will erase the whole Flash memory chip.
              The erase cycle for the whole chip takes a few seconds, and the MCU will block 
-             further commands until the erase cycle completes. 
+             further commands until the erase cycle completes. | |
 
 # Installation
 This project should be imported into Android studio (File -> Import Project).
